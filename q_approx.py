@@ -89,7 +89,7 @@ class LinearQApproximation:
         self.sess.run(self.inc_replay_it, feed_dict=feed_dict)
 
     def regress(self):
-        for i in xrange(5000):
+        for i in range(5000):
             loss, _ = self.sess.run([self.loss, self.train_op])
             if i == 0 and self.plotting is not None:
                 self.plotting.add(loss)

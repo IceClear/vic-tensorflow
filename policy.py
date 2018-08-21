@@ -108,10 +108,10 @@ class QLearningPolicy(object):
 #            transitions.append(
 #                (t.states[-1], 1, t.rewards[-1], self.n_states, t.omega))
 
-        for j in xrange(10):
+        for j in range(10):
             shuffle(transitions)
 
-            for i in xrange(len(transitions)/self.batch_size):
+            for i in range(int(len(transitions)/self.batch_size)):
                 self.process_transitions(
                     transitions[i*self.batch_size:(i+1)*self.batch_size],
                     i == 0 and j % 10 == 0)
@@ -120,6 +120,7 @@ class QLearningPolicy(object):
         self.action_it = 0
 
     def get_action(self, state, omega):
+        state = int(state)
         assert isinstance(state, int)
         if self.action_it > 5 and np.random.uniform() < self.terminate_prob:
             self.reset_action_it()

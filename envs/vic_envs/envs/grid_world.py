@@ -40,7 +40,7 @@ class GridWorld(gym.Env):
 
     def _move(self, direction):
         movement = ACTION_MEANING[direction]
-        for dim in xrange(len(self.board_size)):
+        for dim in range(len(self.board_size)):
             self._move_coordinate(movement[dim], dim)
 
     def _move_coordinate(self, direction, coordinate_id):
@@ -67,13 +67,13 @@ class GridWorld(gym.Env):
                                                       self.unit))
         self.window.dispatch_events()
 
-        for x in xrange(self.board_size[0]):
-            for y in xrange(self.board_size[1]):
+        for x in range(self.board_size[0]):
+            for y in range(self.board_size[1]):
                 self._draw_field(x, y)
 
         self._draw_agent(*self.state, color=agent_color)
         self.window.flip()
- 
+
     def _draw_field(self, x, y):
         if (x + y) % 2 == 0:
             color = ('c3B', (224, 224, 224) * 4)  # light gray
@@ -81,9 +81,9 @@ class GridWorld(gym.Env):
             color = ('c3B', (160, 160, 160) * 4)  # gray
 
         vertex_list = ([(x_it * self.unit, y * self.unit)
-                        for x_it in xrange(x, x+2)] +
+                        for x_it in range(x, x+2)] +
                        [(x_it * self.unit, (y+1) * self.unit)
-                        for x_it in xrange(x+1, x-1, -1)])
+                        for x_it in range(x+1, x-1, -1)])
 
         vertex_flat = [coord for vert in vertex_list for coord in vert]
 
